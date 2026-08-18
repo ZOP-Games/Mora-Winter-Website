@@ -29,3 +29,5 @@ All 4 sections adhere to strict responsive viewport boundaries:
 4. **16:9 Gameplay Video Player**:
    - Strict `16:9` aspect ratio container.
    - Interactive play/pause toggle with live scrubber progression.
+
+## Certified Open-Source Slopware™
