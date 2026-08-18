@@ -1,46 +1,52 @@
 /* ==========================================================================
    MORA WINTER - OFFICIAL SITE STYLING
-   Strict Viewport Height Bounds: Min 2/3 (66.67dvh) | Max 100dvh
+   Ultra Dark Midnight • Cohesive Fraunces/Lora Typography • Cadmium Orange Accents
    ========================================================================== */
 
 /* --- Design Tokens & Color System --- */
 :root {
-  /* Dark Winter Palette */
-  --bg-deep-night: #04070d;
-  --bg-section-dark: #070c18;
-  --bg-section-frost: #0a1122;
-  --bg-card: rgba(16, 26, 48, 0.65);
-  --bg-card-hover: rgba(24, 38, 68, 0.85);
+  /* Ultra Dark Winter Palette */
+  --bg-deep-night: #010307;
+  --bg-section-dark: #02050c;
+  --bg-section-frost: #030814;
+  --bg-card: rgba(4, 9, 22, 0.78);
+  --bg-card-hover: rgba(8, 16, 36, 0.94);
   
-  /* Icy & Cozy Colors */
-  --ice-white: #f0f7ff;
+  /* Icy & Cold Colors */
+  --ice-white: #f8fafc;
   --ice-frost: #bae6fd;
   --ice-cyan: #38bdf8;
   --ice-blue: #0284c7;
-  --cozy-amber: #fbbf24;
-  --cozy-glow: rgba(251, 191, 36, 0.15);
-  --frost-glow: rgba(56, 189, 248, 0.2);
+  
+  /* Cadmium Orange (Reduced Saturation, Rich Warm Earthy Undertone) */
+  --cadmium-orange: #d9531e;
+  --cadmium-orange-light: #e5723b;
+  --cadmium-orange-deep: #b83e14;
+  --cadmium-warmth: #e89569;
+  --fire-glow: rgba(217, 83, 30, 0.38);
+  --frost-glow: rgba(56, 189, 248, 0.15);
   
   /* Text */
   --text-primary: #f8fafc;
   --text-secondary: #94a3b8;
-  --text-muted: #64748b;
+  --text-muted: #4e5d73;
   
   /* Borders */
-  --border-subtle: rgba(255, 255, 255, 0.08);
-  --border-card: rgba(186, 230, 253, 0.15);
-  --border-hover: rgba(56, 189, 248, 0.4);
+  --border-subtle: rgba(255, 255, 255, 0.05);
+  --border-card: rgba(186, 230, 253, 0.08);
+  --border-hover: rgba(217, 83, 30, 0.42);
   
-  /* Typography */
+  /* Cohesive Cozy Storybook Typography */
   --font-title: 'Fraunces', Georgia, serif;
-  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
-  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-heading: 'Fraunces', Georgia, serif;
+  --font-body: 'Lora', Georgia, serif;
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
   --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
   
   /* Layout */
   --container-max-width: 1200px;
   --container-padding: clamp(1.25rem, 4vw, 2.5rem);
-  --section-padding-y: clamp(2rem, 4vh, 3.5rem);
+  --section-padding-y: clamp(1.5rem, 3.5vh, 3rem);
   
   /* Transitions */
   --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
@@ -66,13 +72,13 @@ body {
   font-family: var(--font-body);
   background-color: var(--bg-deep-night);
   color: var(--text-primary);
-  line-height: 1.6;
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
   overflow-x: hidden;
 }
 
-/* --- Floating Side Section Indicators --- */
+/* --- Floating Side Section Indicators (Right-Hand Dot Points) --- */
 .side-navigation {
   position: fixed;
   right: 1.5rem;
@@ -91,26 +97,26 @@ body {
 .side-nav-dot {
   position: relative;
   display: block;
-  width: 10px;
-  height: 10px;
+  width: 9px;
+  height: 9px;
   border-radius: 50%;
-  background-color: rgba(255, 255, 255, 0.2);
-  border: 1px solid rgba(255, 255, 255, 0.1);
+  background-color: rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.05);
   transition: all var(--transition-normal);
   text-decoration: none;
 }
 
 .side-nav-dot:hover,
 .side-nav-dot:focus-visible {
-  background-color: var(--ice-cyan);
+  background-color: var(--cadmium-orange-light);
   transform: scale(1.35);
-  box-shadow: 0 0 10px var(--frost-glow);
+  box-shadow: 0 0 10px var(--fire-glow);
 }
 
 .side-nav-dot.active {
-  background-color: var(--ice-cyan);
+  background-color: var(--cadmium-orange);
   transform: scale(1.45);
-  box-shadow: 0 0 12px var(--ice-cyan);
+  box-shadow: 0 0 12px var(--cadmium-orange);
 }
 
 .dot-tooltip {
@@ -118,8 +124,9 @@ body {
   right: 22px;
   top: 50%;
   transform: translateY(-50%) translateX(10px);
-  background-color: #0d1527;
+  background-color: #030712;
   color: var(--text-primary);
+  font-family: var(--font-sans);
   font-size: 0.75rem;
   font-weight: 500;
   padding: 0.3rem 0.65rem;
@@ -145,7 +152,7 @@ body {
  * VIEWPORT HEIGHT CONSTRAINTS:
  * - At least 2/3 (66.67dvh) screen height
  * - At most 100dvh (100% full screen)
- * - overflow-y: auto ensures content is gracefully accessible without layout rupture
+ * - overflow-y: auto handles content gracefully without layout rupture
  */
 .screen-section {
   width: 100%;
@@ -164,7 +171,7 @@ body {
   box-sizing: border-box;
   overflow-y: auto;
   scrollbar-width: thin;
-  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+  scrollbar-color: rgba(255, 255, 255, 0.1) transparent;
   border-bottom: 1px solid var(--border-subtle);
 }
 
@@ -186,13 +193,13 @@ body {
   flex-direction: column;
 }
 
-/* Section Tag & Headers */
+/* Section Tag & Headers (Cozy Fraunces Style) */
 .section-tag {
   display: inline-flex;
   align-items: center;
   gap: 0.5rem;
   padding: 0.25rem 0.65rem;
-  background-color: rgba(255, 255, 255, 0.04);
+  background-color: rgba(255, 255, 255, 0.03);
   border: 1px solid var(--border-subtle);
   border-radius: 4px;
   margin-bottom: 0.75rem;
@@ -200,32 +207,33 @@ body {
 }
 
 .tag-number {
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
   font-weight: 700;
-  color: var(--ice-cyan);
+  color: var(--cadmium-orange-light);
 }
 
 .tag-label {
+  font-family: var(--font-heading);
   font-size: 0.75rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.08em;
+  letter-spacing: 0.12em;
   color: var(--text-secondary);
 }
 
 .section-title {
   font-family: var(--font-heading);
-  font-size: clamp(1.6rem, 3.5vw, 2.25rem);
-  font-weight: 700;
+  font-size: clamp(1.75rem, 3.8vw, 2.45rem);
+  font-weight: 600;
   letter-spacing: -0.015em;
   color: var(--ice-white);
   margin-bottom: 1.25rem;
 }
 
-/* --- SECTION 1: 3D CARTOONISH SNOWFALL IN THE DARK --- */
+/* --- SECTION 1: 3D CARTOONISH SNOWFALL IN PURE DARKNESS --- */
 .section-snow-canvas {
-  background: radial-gradient(circle at 50% 30%, #0d172e 0%, #060b17 65%, #03060c 100%);
+  background: radial-gradient(circle at 50% 30%, #030814 0%, #02050b 60%, #010206 100%);
   overflow: hidden;
 }
 
@@ -236,7 +244,7 @@ body {
   width: 100%;
   height: 100%;
   z-index: 1;
-  pointer-events: auto;
+  pointer-events: none;
 }
 
 .snow-webgl-wrapper canvas {
@@ -245,116 +253,113 @@ body {
   display: block;
 }
 
-.snow-overlay-content {
-  align-items: center;
-  text-align: center;
-  pointer-events: none;
-  z-index: 10;
-}
-
-.snow-badge {
-  display: inline-flex;
-  align-items: center;
-  gap: 0.5rem;
-  padding: 0.45rem 1rem;
-  background-color: rgba(6, 11, 23, 0.75);
-  backdrop-filter: blur(8px);
-  -webkit-backdrop-filter: blur(8px);
-  border: 1px solid var(--border-card);
-  border-radius: 9999px;
-  font-size: 0.85rem;
-  font-weight: 500;
-  color: var(--ice-frost);
-  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
-  margin-bottom: 0.75rem;
-}
-
-.snow-badge-icon {
-  font-size: 1rem;
-  color: var(--ice-cyan);
-  animation: spinSlow 12s linear infinite;
-}
-
-@keyframes spinSlow {
-  from { transform: rotate(0deg); }
-  to { transform: rotate(360deg); }
-}
-
-.snow-subtext {
-  font-size: 0.95rem;
-  color: var(--text-secondary);
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
-}
-
-/* --- SECTION 2: GIANT 'MORA WINTER' TEXT (~24em) --- */
+/* --- SECTION 2: 3D CAMPFIRE & CADMIUM ORANGE HEXAGONAL CRYSTAL --- */
 .section-title-showcase {
-  background: radial-gradient(circle at 50% 50%, #0e172a 0%, #070c18 60%, #04070d 100%);
+  background: radial-gradient(circle at 50% 70%, #090e1c 0%, #02050d 55%, #010307 100%);
   text-align: center;
   overflow: hidden;
+  position: relative;
+  justify-content: flex-start;
+  padding-top: clamp(2rem, 6vh, 4rem);
+}
+
+.massive-campfire-webgl-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 2;
+  pointer-events: none;
+}
+
+.massive-campfire-webgl-wrapper canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
 }
 
 .title-container {
   align-items: center;
-  justify-content: center;
+  justify-content: flex-start;
+  z-index: 6;
+  position: relative;
+  pointer-events: auto;
 }
 
-.frost-glow-backdrop {
+.hearth-glow-backdrop {
   position: absolute;
-  width: clamp(250px, 50vw, 600px);
-  height: clamp(250px, 50vw, 600px);
-  background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, rgba(251, 191, 36, 0.04) 50%, transparent 70%);
+  bottom: -20%;
+  left: 50%;
+  transform: translateX(-50%);
+  width: clamp(320px, 85vw, 1100px);
+  height: clamp(250px, 60vh, 600px);
+  background: radial-gradient(
+    ellipse at 50% 85%,
+    rgba(217, 83, 30, 0.22) 0%,
+    rgba(184, 62, 20, 0.1) 40%,
+    rgba(56, 189, 248, 0.02) 75%,
+    transparent 88%
+  );
   border-radius: 50%;
   pointer-events: none;
-  z-index: 1;
+  z-index: 3;
+  animation: hearthPulse 4s infinite ease-in-out alternate;
+}
+
+@keyframes hearthPulse {
+  0% { transform: translateX(-50%) scale(0.95); opacity: 0.85; }
+  100% { transform: translateX(-50%) scale(1.06); opacity: 1; }
 }
 
 /*
- * Font that feels cozy (warm, organic, editorial curves)
- * but also a little cold (frosty crystalline edges, icy highlights, crisp serifs).
- * Styled to reach ~24em on large displays and fluidly adapt across viewports.
+ * Giant 'Mora Winter' title (~24em max clamp)
+ * Fraunces font illuminated by the cadmium orange crystal below
  */
 .giant-mora-title {
   font-family: var(--font-title);
-  font-size: clamp(3.5rem, 16vw, 24em);
+  font-size: clamp(3.2rem, 14vw, 24em);
   font-weight: 800;
-  line-height: 0.88;
+  line-height: 0.86;
   letter-spacing: -0.035em;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
   margin: 0;
-  padding: 0.5rem 0;
+  padding: 0;
   user-select: none;
   position: relative;
-  z-index: 5;
+  z-index: 7;
   
-  /* Frosty crystalline gradient with a soft warm ember undertone */
+  /* Cold frosty white/cyan top blending into glowing cadmium orange crystal flame at base */
   background: linear-gradient(
-    175deg,
+    180deg,
     #ffffff 0%,
-    #e2f1ff 35%,
-    #bae6fd 60%,
-    #7dd3fc 85%,
-    #38bdf8 100%
+    #e0f2fe 26%,
+    #bae6fd 48%,
+    #fdba74 68%,
+    #e5723b 82%,
+    #d9531e 92%,
+    #a83612 100%
   );
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
   
-  /* Icy crisp text shadow with cozy warm hearth ambient glow */
-  filter: drop-shadow(0 0 25px rgba(56, 189, 248, 0.25))
-          drop-shadow(0 15px 45px rgba(0, 0, 0, 0.85))
-          drop-shadow(0 0 2px rgba(255, 255, 255, 0.6));
+  filter: drop-shadow(0 0 20px rgba(56, 189, 248, 0.2))
+          drop-shadow(0 15px 35px rgba(217, 83, 30, 0.45))
+          drop-shadow(0 25px 60px rgba(0, 0, 0, 0.95))
+          drop-shadow(0 0 2px rgba(255, 255, 255, 0.5));
   
   transition: transform 0.4s var(--ease-smooth), filter 0.4s var(--ease-smooth);
 }
 
 .giant-mora-title:hover {
   transform: scale(1.015);
-  filter: drop-shadow(0 0 35px rgba(56, 189, 248, 0.4))
-          drop-shadow(0 0 5px rgba(251, 191, 36, 0.3))
-          drop-shadow(0 15px 50px rgba(0, 0, 0, 0.9));
+  filter: drop-shadow(0 0 25px rgba(56, 189, 248, 0.3))
+          drop-shadow(0 18px 45px rgba(217, 83, 30, 0.65))
+          drop-shadow(0 0 4px rgba(254, 215, 170, 0.6));
 }
 
 .title-word {
@@ -364,20 +369,20 @@ body {
 .title-winter {
   font-style: italic;
   font-weight: 700;
-  margin-top: -0.05em;
+  margin-top: -0.04em;
 }
 
 .title-caption {
   font-family: var(--font-heading);
-  font-size: clamp(0.9rem, 2vw, 1.25rem);
+  font-size: clamp(0.85rem, 1.7vw, 1.1rem);
   font-weight: 500;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-  color: var(--ice-frost);
-  margin-top: 1.5rem;
-  opacity: 0.85;
-  z-index: 5;
-  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+  font-style: italic;
+  letter-spacing: 0.1em;
+  color: var(--cadmium-warmth);
+  margin-top: 0.75rem;
+  opacity: 0.92;
+  z-index: 7;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.9), 0 0 15px rgba(217, 83, 30, 0.4);
 }
 
 /* --- SECTION 3: GAME FEATURES / BULLET POINTS --- */
@@ -398,7 +403,7 @@ body {
   background-color: var(--bg-card);
   border: 1px solid var(--border-card);
   border-radius: 12px;
-  padding: 1.25rem 1.35rem;
+  padding: 1.35rem 1.45rem;
   transition: transform var(--transition-fast), border-color var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
   backdrop-filter: blur(6px);
   -webkit-backdrop-filter: blur(6px);
@@ -408,7 +413,7 @@ body {
   transform: translateY(-2px);
   background-color: var(--bg-card-hover);
   border-color: var(--border-hover);
-  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 15px rgba(56, 189, 248, 0.1);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.6), 0 0 15px var(--fire-glow);
 }
 
 .bullet-icon-box {
@@ -418,8 +423,8 @@ body {
   width: 44px;
   height: 44px;
   min-width: 44px;
-  background: rgba(56, 189, 248, 0.1);
-  border: 1px solid rgba(56, 189, 248, 0.2);
+  background: rgba(217, 83, 30, 0.08);
+  border: 1px solid rgba(217, 83, 30, 0.22);
   border-radius: 10px;
 }
 
@@ -434,44 +439,29 @@ body {
 
 .bullet-headline {
   font-family: var(--font-heading);
-  font-size: 1.05rem;
+  font-size: 1.125rem;
   font-weight: 600;
   color: var(--ice-white);
   margin-bottom: 0.35rem;
-  line-height: 1.3;
+  line-height: 1.35;
 }
 
 .bullet-description {
-  font-size: 0.875rem;
+  font-family: var(--font-body);
+  font-size: 0.92rem;
   color: var(--text-secondary);
-  line-height: 1.5;
+  line-height: 1.6;
 }
 
 /* --- SECTION 4: 16:9 VIDEO PLACEHOLDER --- */
 .section-video {
-  background: radial-gradient(circle at 50% 80%, #0f1a30 0%, #070c18 60%, #03060c 100%);
-  text-align: center;
+  background: radial-gradient(circle at 50% 80%, #040916 0%, #02050c 60%, #010206 100%);
 }
 
-.video-container {
-  align-items: center;
-}
-
-.video-header-meta {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  margin-bottom: 1rem;
-}
-
-/*
- * Strict 16:9 Aspect Ratio Wrapper
- * Sized responsively to never exceed section height bounds
- */
+/* Strict 16:9 Aspect Ratio Container */
 .video-aspect-wrapper {
   width: 100%;
-  max-width: 860px;
-  /* Max width calculated so that 16:9 height fits comfortably inside 100dvh section */
+  max-width: 900px;
   max-height: calc(100dvh - 14rem);
   aspect-ratio: 16 / 9;
   margin: 0 auto;
@@ -483,12 +473,12 @@ body {
   width: 100%;
   height: 100%;
   aspect-ratio: 16 / 9;
-  background-color: #03060d;
-  border: 1px solid rgba(186, 230, 253, 0.2);
+  background-color: #010307;
+  border: 1px solid rgba(186, 230, 253, 0.12);
   border-radius: 14px;
   position: relative;
   overflow: hidden;
-  box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.8), 0 0 25px rgba(56, 189, 248, 0.12);
+  box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.95), 0 0 25px rgba(217, 83, 30, 0.15);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
@@ -500,7 +490,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(135deg, #091326 0%, #040813 50%, #0c182f 100%);
+  background: linear-gradient(135deg, #040916 0%, #010308 50%, #080f22 100%);
   z-index: 1;
 }
 
@@ -511,8 +501,8 @@ body {
   width: 100%;
   height: 100%;
   background: 
-    radial-gradient(circle at 30% 40%, rgba(56, 189, 248, 0.18) 0%, transparent 50%),
-    radial-gradient(circle at 70% 60%, rgba(251, 191, 36, 0.12) 0%, transparent 45%);
+    radial-gradient(circle at 30% 40%, rgba(56, 189, 248, 0.12) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(217, 83, 30, 0.15) 0%, transparent 45%);
 }
 
 .poster-frost-overlay {
@@ -521,7 +511,7 @@ body {
   left: 0;
   width: 100%;
   height: 100%;
-  background: linear-gradient(to top, rgba(3, 6, 13, 0.85) 0%, transparent 60%);
+  background: linear-gradient(to top, rgba(1, 3, 7, 0.9) 0%, transparent 60%);
 }
 
 .video-overlay-ui {
@@ -537,24 +527,25 @@ body {
 }
 
 .video-play-btn {
-  width: clamp(56px, 10vw, 76px);
-  height: clamp(56px, 10vw, 76px);
+  width: clamp(54px, 9vw, 74px);
+  height: clamp(54px, 9vw, 74px);
   border-radius: 50%;
-  background: rgba(56, 189, 248, 0.85);
-  border: 2px solid rgba(255, 255, 255, 0.8);
-  color: #030712;
+  background: var(--cadmium-orange);
+  border: 2px solid rgba(255, 255, 255, 0.85);
+  color: #ffffff;
   display: flex;
   align-items: center;
   justify-content: center;
   cursor: pointer;
-  box-shadow: 0 0 25px rgba(56, 189, 248, 0.5), 0 4px 15px rgba(0, 0, 0, 0.5);
+  box-shadow: 0 0 25px rgba(217, 83, 30, 0.6), 0 4px 15px rgba(0, 0, 0, 0.8);
   transition: transform var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
 }
 
 .video-play-btn:hover {
   transform: scale(1.12);
   background: #ffffff;
-  box-shadow: 0 0 35px rgba(56, 189, 248, 0.8), 0 6px 20px rgba(0, 0, 0, 0.6);
+  color: var(--cadmium-orange);
+  box-shadow: 0 0 35px rgba(217, 83, 30, 0.9), 0 6px 20px rgba(0, 0, 0, 0.9);
 }
 
 .play-icon-triangle {
@@ -569,25 +560,25 @@ body {
 }
 
 .video-tag-pill {
-  font-family: var(--font-mono);
-  font-size: 0.7rem;
+  font-family: var(--font-heading);
+  font-size: 0.72rem;
   font-weight: 600;
   text-transform: uppercase;
-  letter-spacing: 0.05em;
+  letter-spacing: 0.08em;
   padding: 0.2rem 0.55rem;
-  background: rgba(255, 255, 255, 0.1);
+  background: rgba(255, 255, 255, 0.06);
   backdrop-filter: blur(4px);
   border-radius: 4px;
   color: var(--ice-frost);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
 .video-title-prompt {
   font-family: var(--font-heading);
-  font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+  font-size: clamp(0.95rem, 1.9vw, 1.15rem);
   font-weight: 500;
   color: var(--ice-white);
-  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.95);
 }
 
 /* Video Controls Bar Mockup */
@@ -600,11 +591,11 @@ body {
   justify-content: space-between;
   gap: 1rem;
   padding: 0.65rem 1rem;
-  background: rgba(4, 7, 13, 0.85);
+  background: rgba(1, 3, 7, 0.92);
   backdrop-filter: blur(8px);
   border-top: 1px solid var(--border-subtle);
-  font-family: var(--font-mono);
-  font-size: 0.75rem;
+  font-family: var(--font-heading);
+  font-size: 0.8rem;
   color: var(--text-secondary);
 }
 
@@ -617,14 +608,14 @@ body {
 
 .ctrl-icon {
   font-size: 0.8rem;
-  color: var(--ice-frost);
+  color: var(--cadmium-warmth);
   cursor: pointer;
 }
 
 .video-scrubber-track {
   flex: 1;
   height: 4px;
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(255, 255, 255, 0.1);
   border-radius: 2px;
   position: relative;
   overflow: hidden;
@@ -633,44 +624,17 @@ body {
 .video-scrubber-fill {
   width: 32%;
   height: 100%;
-  background: var(--ice-cyan);
+  background: var(--cadmium-orange);
   border-radius: 2px;
 }
 
 .site-closing-footer {
   margin-top: 1.5rem;
-  font-size: 0.8rem;
+  font-family: var(--font-heading);
+  font-size: 0.82rem;
   color: var(--text-muted);
-}
-
-/* --- Scroll Down Cue Indicator --- */
-.scroll-down-cue {
-  position: absolute;
-  bottom: 0.85rem;
-  left: 50%;
-  transform: translateX(-50%);
-  color: var(--text-muted);
-  text-decoration: none;
-  font-size: 1.2rem;
-  padding: 0.5rem;
-  z-index: 10;
-  transition: color var(--transition-fast), transform var(--transition-fast);
-}
-
-.scroll-down-cue:hover {
-  color: var(--ice-cyan);
-  transform: translateX(-50%) translateY(3px);
-}
-
-.scroll-arrow {
-  display: inline-block;
-  animation: snowBounce 2s infinite ease-in-out;
-}
-
-@keyframes snowBounce {
-  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-  40% { transform: translateY(-5px); }
-  60% { transform: translateY(-3px); }
+  text-align: center;
+  width: 100%;
 }
 
 /* --- Responsive Adjustments --- */
