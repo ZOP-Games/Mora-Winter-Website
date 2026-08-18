@@ -1,0 +1,695 @@
+/* ==========================================================================
+   MORA WINTER - OFFICIAL SITE STYLING
+   Strict Viewport Height Bounds: Min 2/3 (66.67dvh) | Max 100dvh
+   ========================================================================== */
+
+/* --- Design Tokens & Color System --- */
+:root {
+  /* Dark Winter Palette */
+  --bg-deep-night: #04070d;
+  --bg-section-dark: #070c18;
+  --bg-section-frost: #0a1122;
+  --bg-card: rgba(16, 26, 48, 0.65);
+  --bg-card-hover: rgba(24, 38, 68, 0.85);
+  
+  /* Icy & Cozy Colors */
+  --ice-white: #f0f7ff;
+  --ice-frost: #bae6fd;
+  --ice-cyan: #38bdf8;
+  --ice-blue: #0284c7;
+  --cozy-amber: #fbbf24;
+  --cozy-glow: rgba(251, 191, 36, 0.15);
+  --frost-glow: rgba(56, 189, 248, 0.2);
+  
+  /* Text */
+  --text-primary: #f8fafc;
+  --text-secondary: #94a3b8;
+  --text-muted: #64748b;
+  
+  /* Borders */
+  --border-subtle: rgba(255, 255, 255, 0.08);
+  --border-card: rgba(186, 230, 253, 0.15);
+  --border-hover: rgba(56, 189, 248, 0.4);
+  
+  /* Typography */
+  --font-title: 'Fraunces', Georgia, serif;
+  --font-heading: 'Outfit', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-body: 'Inter', -apple-system, BlinkMacSystemFont, sans-serif;
+  --font-mono: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, monospace;
+  
+  /* Layout */
+  --container-max-width: 1200px;
+  --container-padding: clamp(1.25rem, 4vw, 2.5rem);
+  --section-padding-y: clamp(2rem, 4vh, 3.5rem);
+  
+  /* Transitions */
+  --ease-smooth: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 0.2s ease;
+  --transition-normal: 0.35s var(--ease-smooth);
+}
+
+/* --- Global Reset --- */
+*, *::before, *::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-size: 16px;
+  scroll-behavior: smooth;
+  color-scheme: dark;
+  background-color: var(--bg-deep-night);
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg-deep-night);
+  color: var(--text-primary);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+/* --- Floating Side Section Indicators --- */
+.side-navigation {
+  position: fixed;
+  right: 1.5rem;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 900;
+}
+
+.side-nav-list {
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 1.1rem;
+}
+
+.side-nav-dot {
+  position: relative;
+  display: block;
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background-color: rgba(255, 255, 255, 0.2);
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all var(--transition-normal);
+  text-decoration: none;
+}
+
+.side-nav-dot:hover,
+.side-nav-dot:focus-visible {
+  background-color: var(--ice-cyan);
+  transform: scale(1.35);
+  box-shadow: 0 0 10px var(--frost-glow);
+}
+
+.side-nav-dot.active {
+  background-color: var(--ice-cyan);
+  transform: scale(1.45);
+  box-shadow: 0 0 12px var(--ice-cyan);
+}
+
+.dot-tooltip {
+  position: absolute;
+  right: 22px;
+  top: 50%;
+  transform: translateY(-50%) translateX(10px);
+  background-color: #0d1527;
+  color: var(--text-primary);
+  font-size: 0.75rem;
+  font-weight: 500;
+  padding: 0.3rem 0.65rem;
+  border-radius: 4px;
+  border: 1px solid var(--border-card);
+  white-space: nowrap;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity var(--transition-fast), transform var(--transition-fast);
+}
+
+.side-nav-dot:hover .dot-tooltip {
+  opacity: 1;
+  transform: translateY(-50%) translateX(0);
+}
+
+/* --- MAIN CONTENT & SECTION CONSTRAINTS --- */
+.main-content {
+  width: 100%;
+}
+
+/*
+ * VIEWPORT HEIGHT CONSTRAINTS:
+ * - At least 2/3 (66.67dvh) screen height
+ * - At most 100dvh (100% full screen)
+ * - overflow-y: auto ensures content is gracefully accessible without layout rupture
+ */
+.screen-section {
+  width: 100%;
+  min-height: calc(100vh * 2 / 3);
+  min-height: calc(100dvh * 2 / 3);
+  max-height: 100vh;
+  max-height: 100dvh;
+  
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  position: relative;
+  
+  padding: var(--section-padding-y) 0;
+  box-sizing: border-box;
+  overflow-y: auto;
+  scrollbar-width: thin;
+  scrollbar-color: rgba(255, 255, 255, 0.15) transparent;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.section-container {
+  width: 100%;
+  max-width: var(--container-max-width);
+  margin: 0 auto;
+  padding: 0 var(--container-padding);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  position: relative;
+  z-index: 10;
+}
+
+.section-inner {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+}
+
+/* Section Tag & Headers */
+.section-tag {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.25rem 0.65rem;
+  background-color: rgba(255, 255, 255, 0.04);
+  border: 1px solid var(--border-subtle);
+  border-radius: 4px;
+  margin-bottom: 0.75rem;
+  width: fit-content;
+}
+
+.tag-number {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 700;
+  color: var(--ice-cyan);
+}
+
+.tag-label {
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  color: var(--text-secondary);
+}
+
+.section-title {
+  font-family: var(--font-heading);
+  font-size: clamp(1.6rem, 3.5vw, 2.25rem);
+  font-weight: 700;
+  letter-spacing: -0.015em;
+  color: var(--ice-white);
+  margin-bottom: 1.25rem;
+}
+
+/* --- SECTION 1: 3D CARTOONISH SNOWFALL IN THE DARK --- */
+.section-snow-canvas {
+  background: radial-gradient(circle at 50% 30%, #0d172e 0%, #060b17 65%, #03060c 100%);
+  overflow: hidden;
+}
+
+.snow-webgl-wrapper {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 1;
+  pointer-events: auto;
+}
+
+.snow-webgl-wrapper canvas {
+  width: 100% !important;
+  height: 100% !important;
+  display: block;
+}
+
+.snow-overlay-content {
+  align-items: center;
+  text-align: center;
+  pointer-events: none;
+  z-index: 10;
+}
+
+.snow-badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  padding: 0.45rem 1rem;
+  background-color: rgba(6, 11, 23, 0.75);
+  backdrop-filter: blur(8px);
+  -webkit-backdrop-filter: blur(8px);
+  border: 1px solid var(--border-card);
+  border-radius: 9999px;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--ice-frost);
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.4);
+  margin-bottom: 0.75rem;
+}
+
+.snow-badge-icon {
+  font-size: 1rem;
+  color: var(--ice-cyan);
+  animation: spinSlow 12s linear infinite;
+}
+
+@keyframes spinSlow {
+  from { transform: rotate(0deg); }
+  to { transform: rotate(360deg); }
+}
+
+.snow-subtext {
+  font-size: 0.95rem;
+  color: var(--text-secondary);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.8);
+}
+
+/* --- SECTION 2: GIANT 'MORA WINTER' TEXT (~24em) --- */
+.section-title-showcase {
+  background: radial-gradient(circle at 50% 50%, #0e172a 0%, #070c18 60%, #04070d 100%);
+  text-align: center;
+  overflow: hidden;
+}
+
+.title-container {
+  align-items: center;
+  justify-content: center;
+}
+
+.frost-glow-backdrop {
+  position: absolute;
+  width: clamp(250px, 50vw, 600px);
+  height: clamp(250px, 50vw, 600px);
+  background: radial-gradient(circle, rgba(56, 189, 248, 0.12) 0%, rgba(251, 191, 36, 0.04) 50%, transparent 70%);
+  border-radius: 50%;
+  pointer-events: none;
+  z-index: 1;
+}
+
+/*
+ * Font that feels cozy (warm, organic, editorial curves)
+ * but also a little cold (frosty crystalline edges, icy highlights, crisp serifs).
+ * Styled to reach ~24em on large displays and fluidly adapt across viewports.
+ */
+.giant-mora-title {
+  font-family: var(--font-title);
+  font-size: clamp(3.5rem, 16vw, 24em);
+  font-weight: 800;
+  line-height: 0.88;
+  letter-spacing: -0.035em;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  margin: 0;
+  padding: 0.5rem 0;
+  user-select: none;
+  position: relative;
+  z-index: 5;
+  
+  /* Frosty crystalline gradient with a soft warm ember undertone */
+  background: linear-gradient(
+    175deg,
+    #ffffff 0%,
+    #e2f1ff 35%,
+    #bae6fd 60%,
+    #7dd3fc 85%,
+    #38bdf8 100%
+  );
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+  
+  /* Icy crisp text shadow with cozy warm hearth ambient glow */
+  filter: drop-shadow(0 0 25px rgba(56, 189, 248, 0.25))
+          drop-shadow(0 15px 45px rgba(0, 0, 0, 0.85))
+          drop-shadow(0 0 2px rgba(255, 255, 255, 0.6));
+  
+  transition: transform 0.4s var(--ease-smooth), filter 0.4s var(--ease-smooth);
+}
+
+.giant-mora-title:hover {
+  transform: scale(1.015);
+  filter: drop-shadow(0 0 35px rgba(56, 189, 248, 0.4))
+          drop-shadow(0 0 5px rgba(251, 191, 36, 0.3))
+          drop-shadow(0 15px 50px rgba(0, 0, 0, 0.9));
+}
+
+.title-word {
+  display: inline-block;
+}
+
+.title-winter {
+  font-style: italic;
+  font-weight: 700;
+  margin-top: -0.05em;
+}
+
+.title-caption {
+  font-family: var(--font-heading);
+  font-size: clamp(0.9rem, 2vw, 1.25rem);
+  font-weight: 500;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+  color: var(--ice-frost);
+  margin-top: 1.5rem;
+  opacity: 0.85;
+  z-index: 5;
+  text-shadow: 0 2px 10px rgba(0, 0, 0, 0.8);
+}
+
+/* --- SECTION 3: GAME FEATURES / BULLET POINTS --- */
+.section-features {
+  background-color: var(--bg-section-dark);
+}
+
+.bullets-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: 1.25rem;
+  width: 100%;
+}
+
+.bullet-card {
+  display: flex;
+  gap: 1.1rem;
+  background-color: var(--bg-card);
+  border: 1px solid var(--border-card);
+  border-radius: 12px;
+  padding: 1.25rem 1.35rem;
+  transition: transform var(--transition-fast), border-color var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
+  backdrop-filter: blur(6px);
+  -webkit-backdrop-filter: blur(6px);
+}
+
+.bullet-card:hover {
+  transform: translateY(-2px);
+  background-color: var(--bg-card-hover);
+  border-color: var(--border-hover);
+  box-shadow: 0 8px 24px rgba(0, 0, 0, 0.3), 0 0 15px rgba(56, 189, 248, 0.1);
+}
+
+.bullet-icon-box {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 44px;
+  height: 44px;
+  min-width: 44px;
+  background: rgba(56, 189, 248, 0.1);
+  border: 1px solid rgba(56, 189, 248, 0.2);
+  border-radius: 10px;
+}
+
+.bullet-icon {
+  font-size: 1.35rem;
+}
+
+.bullet-content {
+  display: flex;
+  flex-direction: column;
+}
+
+.bullet-headline {
+  font-family: var(--font-heading);
+  font-size: 1.05rem;
+  font-weight: 600;
+  color: var(--ice-white);
+  margin-bottom: 0.35rem;
+  line-height: 1.3;
+}
+
+.bullet-description {
+  font-size: 0.875rem;
+  color: var(--text-secondary);
+  line-height: 1.5;
+}
+
+/* --- SECTION 4: 16:9 VIDEO PLACEHOLDER --- */
+.section-video {
+  background: radial-gradient(circle at 50% 80%, #0f1a30 0%, #070c18 60%, #03060c 100%);
+  text-align: center;
+}
+
+.video-container {
+  align-items: center;
+}
+
+.video-header-meta {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-bottom: 1rem;
+}
+
+/*
+ * Strict 16:9 Aspect Ratio Wrapper
+ * Sized responsively to never exceed section height bounds
+ */
+.video-aspect-wrapper {
+  width: 100%;
+  max-width: 860px;
+  /* Max width calculated so that 16:9 height fits comfortably inside 100dvh section */
+  max-height: calc(100dvh - 14rem);
+  aspect-ratio: 16 / 9;
+  margin: 0 auto;
+  position: relative;
+  display: flex;
+}
+
+.video-player-placeholder {
+  width: 100%;
+  height: 100%;
+  aspect-ratio: 16 / 9;
+  background-color: #03060d;
+  border: 1px solid rgba(186, 230, 253, 0.2);
+  border-radius: 14px;
+  position: relative;
+  overflow: hidden;
+  box-shadow: 0 16px 40px -8px rgba(0, 0, 0, 0.8), 0 0 25px rgba(56, 189, 248, 0.12);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+
+.video-poster-backdrop {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(135deg, #091326 0%, #040813 50%, #0c182f 100%);
+  z-index: 1;
+}
+
+.video-mesh-lights {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: 
+    radial-gradient(circle at 30% 40%, rgba(56, 189, 248, 0.18) 0%, transparent 50%),
+    radial-gradient(circle at 70% 60%, rgba(251, 191, 36, 0.12) 0%, transparent 45%);
+}
+
+.poster-frost-overlay {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  background: linear-gradient(to top, rgba(3, 6, 13, 0.85) 0%, transparent 60%);
+}
+
+.video-overlay-ui {
+  position: relative;
+  z-index: 5;
+  height: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  padding: 1.5rem;
+  gap: 0.75rem;
+}
+
+.video-play-btn {
+  width: clamp(56px, 10vw, 76px);
+  height: clamp(56px, 10vw, 76px);
+  border-radius: 50%;
+  background: rgba(56, 189, 248, 0.85);
+  border: 2px solid rgba(255, 255, 255, 0.8);
+  color: #030712;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  box-shadow: 0 0 25px rgba(56, 189, 248, 0.5), 0 4px 15px rgba(0, 0, 0, 0.5);
+  transition: transform var(--transition-fast), background-color var(--transition-fast), box-shadow var(--transition-fast);
+}
+
+.video-play-btn:hover {
+  transform: scale(1.12);
+  background: #ffffff;
+  box-shadow: 0 0 35px rgba(56, 189, 248, 0.8), 0 6px 20px rgba(0, 0, 0, 0.6);
+}
+
+.play-icon-triangle {
+  font-size: clamp(1.2rem, 2.5vw, 1.6rem);
+  margin-left: 4px;
+}
+
+.video-meta-tags {
+  display: flex;
+  gap: 0.5rem;
+  margin-top: 0.25rem;
+}
+
+.video-tag-pill {
+  font-family: var(--font-mono);
+  font-size: 0.7rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  padding: 0.2rem 0.55rem;
+  background: rgba(255, 255, 255, 0.1);
+  backdrop-filter: blur(4px);
+  border-radius: 4px;
+  color: var(--ice-frost);
+  border: 1px solid rgba(255, 255, 255, 0.15);
+}
+
+.video-title-prompt {
+  font-family: var(--font-heading);
+  font-size: clamp(0.85rem, 1.8vw, 1.05rem);
+  font-weight: 500;
+  color: var(--ice-white);
+  text-shadow: 0 2px 8px rgba(0, 0, 0, 0.9);
+}
+
+/* Video Controls Bar Mockup */
+.video-controls-bar {
+  position: relative;
+  z-index: 5;
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 1rem;
+  padding: 0.65rem 1rem;
+  background: rgba(4, 7, 13, 0.85);
+  backdrop-filter: blur(8px);
+  border-top: 1px solid var(--border-subtle);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  color: var(--text-secondary);
+}
+
+.controls-left,
+.controls-right {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.ctrl-icon {
+  font-size: 0.8rem;
+  color: var(--ice-frost);
+  cursor: pointer;
+}
+
+.video-scrubber-track {
+  flex: 1;
+  height: 4px;
+  background: rgba(255, 255, 255, 0.15);
+  border-radius: 2px;
+  position: relative;
+  overflow: hidden;
+}
+
+.video-scrubber-fill {
+  width: 32%;
+  height: 100%;
+  background: var(--ice-cyan);
+  border-radius: 2px;
+}
+
+.site-closing-footer {
+  margin-top: 1.5rem;
+  font-size: 0.8rem;
+  color: var(--text-muted);
+}
+
+/* --- Scroll Down Cue Indicator --- */
+.scroll-down-cue {
+  position: absolute;
+  bottom: 0.85rem;
+  left: 50%;
+  transform: translateX(-50%);
+  color: var(--text-muted);
+  text-decoration: none;
+  font-size: 1.2rem;
+  padding: 0.5rem;
+  z-index: 10;
+  transition: color var(--transition-fast), transform var(--transition-fast);
+}
+
+.scroll-down-cue:hover {
+  color: var(--ice-cyan);
+  transform: translateX(-50%) translateY(3px);
+}
+
+.scroll-arrow {
+  display: inline-block;
+  animation: snowBounce 2s infinite ease-in-out;
+}
+
+@keyframes snowBounce {
+  0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
+  40% { transform: translateY(-5px); }
+  60% { transform: translateY(-3px); }
+}
+
+/* --- Responsive Adjustments --- */
+@media (max-width: 768px) {
+  .side-navigation {
+    right: 0.6rem;
+  }
+
+  .bullets-grid {
+    grid-template-columns: 1fr;
+    gap: 0.85rem;
+  }
+
+  .video-aspect-wrapper {
+    max-height: calc(100dvh - 10rem);
+  }
+
+  .video-overlay-ui {
+    padding: 0.75rem;
+    gap: 0.4rem;
+  }
+}

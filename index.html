@@ -1,0 +1,248 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta name="description" content="Mora Winter - A cozy winter exploration and atmospheric survival game by ZOP Games.">
+  <title>Mora Winter | ZOP Games</title>
+  
+  <!-- Google Fonts: Fraunces (Cozy & Crisp Cold), Outfit, and Inter -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Inter:wght@300;400;500;600;700&family=Outfit:wght@400;500;600;700&display=swap" rel="stylesheet">
+  
+  <!-- Three.js for 3D Cartoonish Snow Rendering -->
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
+  
+  <!-- Main Stylesheet -->
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <!-- Floating Minimal Section Indicators (Dot Navigation) -->
+  <aside class="side-navigation" aria-label="Section Quick Switcher">
+    <ul class="side-nav-list">
+      <li>
+        <a href="#section-1" class="side-nav-dot active" data-section="section-1" aria-label="Navigate to 3D Snowfall">
+          <span class="dot-tooltip">01. 3D Snowfall</span>
+        </a>
+      </li>
+      <li>
+        <a href="#section-2" class="side-nav-dot" data-section="section-2" aria-label="Navigate to Mora Winter Title">
+          <span class="dot-tooltip">02. Mora Winter</span>
+        </a>
+      </li>
+      <li>
+        <a href="#section-3" class="side-nav-dot" data-section="section-3" aria-label="Navigate to Game Overview">
+          <span class="dot-tooltip">03. Game Features</span>
+        </a>
+      </li>
+      <li>
+        <a href="#section-4" class="side-nav-dot" data-section="section-4" aria-label="Navigate to Trailer">
+          <span class="dot-tooltip">04. Video Trailer</span>
+        </a>
+      </li>
+    </ul>
+  </aside>
+
+  <!-- Main Content Container -->
+  <main class="main-content" id="mainContent">
+
+    <!-- SECTION 1: 3D CARTOONISH SNOW IN THE DARK -->
+    <section id="section-1" class="screen-section section-snow-canvas" aria-label="3D Cartoon Snowfall">
+      <div id="snow-container" class="snow-webgl-wrapper" aria-hidden="true"></div>
+      
+      <div class="section-container snow-overlay-content">
+        <div class="snow-badge">
+          <span class="snow-badge-icon">❄</span>
+          <span class="snow-badge-text">Interactive 3D Atmosphere</span>
+        </div>
+        <p class="snow-subtext">Move your cursor to guide the gentle winter breeze</p>
+      </div>
+
+      <a href="#section-2" class="scroll-down-cue" aria-label="Scroll to Section 2">
+        <span class="scroll-arrow" aria-hidden="true">↓</span>
+      </a>
+    </section>
+
+    <!-- SECTION 2: 'MORA WINTER' HUGE COZY & COLD TEXT -->
+    <section id="section-2" class="screen-section section-title-showcase" aria-label="Mora Winter Title Display">
+      <div class="section-container title-container">
+        <div class="frost-glow-backdrop" aria-hidden="true"></div>
+        <h1 class="giant-mora-title">
+          <span class="title-word title-mora">Mora</span>
+          <span class="title-word title-winter">Winter</span>
+        </h1>
+        <p class="title-caption">A Calming Winter Odyssey • By ZOP Games</p>
+      </div>
+
+      <a href="#section-3" class="scroll-down-cue" aria-label="Scroll to Section 3">
+        <span class="scroll-arrow" aria-hidden="true">↓</span>
+      </a>
+    </section>
+
+    <!-- SECTION 3: BULLET POINTS (ENGLISH TRANSLATION & EXPANSION FROM HUNGARIAN SOURCE) -->
+    <section id="section-3" class="screen-section section-features" aria-labelledby="features-heading">
+      <div class="section-container">
+        <div class="section-inner">
+          
+          <div class="section-tag">
+            <span class="tag-number">03</span>
+            <span class="tag-label">About The Game</span>
+          </div>
+
+          <h2 id="features-heading" class="section-title">
+            Key Features &amp; Atmosphere
+          </h2>
+
+          <div class="bullets-grid">
+            
+            <div class="bullet-card">
+              <div class="bullet-icon-box">
+                <span class="bullet-icon">✦</span>
+              </div>
+              <div class="bullet-content">
+                <h3 class="bullet-headline">Latest Creation by ZOP Games</h3>
+                <p class="bullet-description">
+                  The latest production from ZOP Games, crafted from the ground up as a peaceful, soul-soothing, and deeply calming gaming experience.
+                </p>
+              </div>
+            </div>
+
+            <div class="bullet-card">
+              <div class="bullet-icon-box">
+                <span class="bullet-icon">🦊</span>
+              </div>
+              <div class="bullet-content">
+                <h3 class="bullet-headline">Two-Tailed Fox Protagonist</h3>
+                <p class="bullet-description">
+                  Take control of a spirited little two-tailed fox navigating through a vast, unfamiliar, snow-covered world full of charm and wonder.
+                </p>
+              </div>
+            </div>
+
+            <div class="bullet-card">
+              <div class="bullet-icon-box">
+                <span class="bullet-icon">❄️</span>
+              </div>
+              <div class="bullet-content">
+                <h3 class="bullet-headline">Gentle Survival &amp; Gathering</h3>
+                <p class="bullet-description">
+                  Survival goes beyond withstanding the bitter cold—gather essential resources, craft warm fires, and find snug shelter across freezing nights.
+                </p>
+              </div>
+            </div>
+
+            <div class="bullet-card">
+              <div class="bullet-icon-box">
+                <span class="bullet-icon">🚪</span>
+              </div>
+              <div class="bullet-content">
+                <h3 class="bullet-headline">The Mysterious Monumental Door</h3>
+                <p class="bullet-description">
+                  As the snowfall intensifies, one curious location remains untouched—a colossal, ancient door standing alone in the middle of nowhere.
+                </p>
+              </div>
+            </div>
+
+            <div class="bullet-card">
+              <div class="bullet-icon-box">
+                <span class="bullet-icon">☕</span>
+              </div>
+              <div class="bullet-content">
+                <h3 class="bullet-headline">Warm Blanket &amp; Hot Cocoa Vibe</h3>
+                <p class="bullet-description">
+                  Engineered to evoke the heartwarming feeling of wrapping yourself in a soft blanket, sipping hot cocoa, and getting lost in a good book.
+                </p>
+              </div>
+            </div>
+
+            <div class="bullet-card">
+              <div class="bullet-icon-box">
+                <span class="bullet-icon">✨</span>
+              </div>
+              <div class="bullet-content">
+                <h3 class="bullet-headline">Enchanting, Pressure-Free World</h3>
+                <p class="bullet-description">
+                  Let the cozy atmosphere sweep you away as you immerse yourself in a magical, tranquil realm designed for relaxation and curious minds.
+                </p>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+
+      <a href="#section-4" class="scroll-down-cue" aria-label="Scroll to Section 4">
+        <span class="scroll-arrow" aria-hidden="true">↓</span>
+      </a>
+    </section>
+
+    <!-- SECTION 4: 16:9 VIDEO PLACEHOLDER -->
+    <section id="section-4" class="screen-section section-video" aria-labelledby="video-heading">
+      <div class="section-container video-container">
+        
+        <div class="video-header-meta">
+          <div class="section-tag">
+            <span class="tag-number">04</span>
+            <span class="tag-label">Official Showcase</span>
+          </div>
+          <h2 id="video-heading" class="section-title">
+            Watch the Gameplay Trailer
+          </h2>
+        </div>
+
+        <!-- 16:9 Aspect Ratio Video Box -->
+        <div class="video-aspect-wrapper">
+          <div class="video-player-placeholder" id="videoPlaceholder" role="region" aria-label="Video Player Placeholder">
+            
+            <!-- Video Poster / Backdrop -->
+            <div class="video-poster-backdrop" aria-hidden="true">
+              <div class="video-mesh-lights"></div>
+              <div class="poster-frost-overlay"></div>
+            </div>
+
+            <!-- Play Button & Overlay -->
+            <div class="video-overlay-ui">
+              <button class="video-play-btn" id="playBtn" aria-label="Play Mora Winter Trailer">
+                <span class="play-icon-triangle" aria-hidden="true">▶</span>
+              </button>
+              <div class="video-meta-tags">
+                <span class="video-tag-pill">4K UHD</span>
+                <span class="video-tag-pill">16:9 Aspect Ratio</span>
+                <span class="video-tag-pill">Cozy Teaser</span>
+              </div>
+              <div class="video-title-prompt">Mora Winter — Official Announcement &amp; Mood Trailer</div>
+            </div>
+
+            <!-- Video Progress Bar Mockup -->
+            <div class="video-controls-bar" aria-hidden="true">
+              <div class="controls-left">
+                <span class="ctrl-icon">❚❚</span>
+                <span class="ctrl-time">0:00 / 2:14</span>
+              </div>
+              <div class="video-scrubber-track">
+                <div class="video-scrubber-fill"></div>
+              </div>
+              <div class="controls-right">
+                <span class="ctrl-icon">🔊</span>
+                <span class="ctrl-icon">⛶</span>
+              </div>
+            </div>
+
+          </div>
+        </div>
+
+        <footer class="site-closing-footer">
+          <p>&copy; 2026 ZOP Games • Mora Winter. All rights reserved.</p>
+        </footer>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- Main JavaScript File -->
+  <script src="script.js"></script>
+</body>
+</html>
