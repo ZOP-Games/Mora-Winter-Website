@@ -1,87 +1,59 @@
 <!DOCTYPE html>
 <html lang="en">
-
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description"
-    content="Mora Winter - A cozy winter exploration and atmospheric survival game by Spring Flow Games.">
+  <meta name="description" content="Mora Winter - A cozy winter exploration and atmospheric survival game by Spring Flow Games.">
   <title>Mora Winter | Spring Flow Games</title>
-
+  
   <!-- Google Fonts: Fraunces & Lora for a cozy, storybook winter feel -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link
-    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Lora:ital,wght@0,400..700;1,400..700&family=Inter:wght@400;500;600&display=swap"
-    rel="stylesheet">
-
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Lora:ital,wght@0,400..700;1,400..700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
+  
   <!-- Three.js for 3D Cartoonish Snow & Massive Campfire Rendering -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-
+  
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
-
 <body>
-
-  <!-- Floating Minimal Section Indicators (Dot Navigation on the right) -->
-  <aside class="side-navigation" aria-label="Section Quick Switcher">
-    <ul class="side-nav-list">
-      <li>
-        <a href="#section-1" class="side-nav-dot active" data-section="section-1" aria-label="Navigate to 3D Snowfall">
-          <span class="dot-tooltip">01. 3D Snowfall</span>
-        </a>
-      </li>
-      <li>
-        <a href="#section-2" class="side-nav-dot" data-section="section-2"
-          aria-label="Navigate to Mora Winter &amp; Campfire">
-          <span class="dot-tooltip">02. Mora Winter</span>
-        </a>
-      </li>
-      <li>
-        <a href="#section-3" class="side-nav-dot" data-section="section-3" aria-label="Navigate to Game Overview">
-          <span class="dot-tooltip">03. Game Features</span>
-        </a>
-      </li>
-      <li>
-        <a href="#section-4" class="side-nav-dot" data-section="section-4" aria-label="Navigate to Trailer">
-          <span class="dot-tooltip">04. Video Trailer</span>
-        </a>
-      </li>
-    </ul>
-  </aside>
 
   <!-- Main Content Container -->
   <main class="main-content" id="mainContent">
 
-    <!-- SECTION 1: 3D CARTOONISH SNOW IN THE DARK -->
-    <section id="section-1" class="screen-section section-snow-canvas" aria-label="3D Cartoon Snowfall">
+    <!-- SECTION 1: MERGED HERO (160dvh, 60dvh UPPER SKY SNOWFALL, TITLE CENTERED IN BOTTOM 100dvh) -->
+    <section id="section-1" class="screen-section section-hero-merged" aria-label="Mora Winter Hero">
+      
+      <!-- 3D Snowfall Canvas across 160dvh background -->
       <div id="snow-container" class="snow-webgl-wrapper" aria-hidden="true"></div>
-    </section>
 
-    <!-- SECTION 2: 'MORA WINTER' TITLE WITH 3D CAMPFIRE & CADMIUM ORANGE CRYSTAL -->
-    <section id="section-2" class="screen-section section-title-showcase" aria-label="Mora Winter Title &amp; Campfire">
-
-      <!-- Full-Screen 3D Campfire Canvas -->
+      <!-- 3D Campfire Canvas anchored to bottom half -->
       <div id="campfire-container" class="massive-campfire-webgl-wrapper" aria-hidden="true"></div>
 
-      <div class="section-container title-container">
+      <!-- Upper Sky Spacer (60dvh) -->
+      <div class="hero-upper-sky" aria-hidden="true"></div>
 
-        <!-- Ambient Warm Hearth Glow -->
-        <div class="hearth-glow-backdrop" aria-hidden="true"></div>
+      <!-- Bottom Half (100dvh): Vertically Centered Title & Campfire Hearth -->
+      <div class="hero-bottom-half">
+        <div class="section-container title-container">
+          
+          <!-- Ambient Warm Hearth Glow -->
+          <div class="hearth-glow-backdrop" aria-hidden="true"></div>
 
-        <!-- Giant 'Mora Winter' Title -->
-        <h1 class="giant-mora-title" id="moraTitle">
-          <span class="title-word title-mora">Mora</span>
-          <span class="title-word title-winter">Winter</span>
-        </h1>
+          <!-- Giant 'Mora Winter' Title -->
+          <h1 class="giant-mora-title" id="moraTitle">
+            <span class="title-word title-mora">Mora</span>
+            <span class="title-word title-winter">Winter</span>
+          </h1>
 
-        <p class="title-caption">A Calming Winter Odyssey • By Spring Flow Games</p>
+          <p class="title-caption">A Calming Winter Odyssey • By Spring Flow Games</p>
+        </div>
       </div>
     </section>
 
-    <!-- SECTION 3: BULLET POINTS (LEFT-ALIGNED UNIFIED CONTAINER) -->
-    <section id="section-3" class="screen-section section-features" aria-labelledby="features-heading">
+    <!-- SECTION 2: BULLET POINTS (LEFT-ALIGNED UNIFIED CONTAINER) -->
+    <section id="section-2" class="screen-section section-features" aria-labelledby="features-heading">
       <div class="section-container">
         <div class="section-inner">
 
@@ -90,7 +62,7 @@
           </h2>
 
           <div class="bullets-grid">
-
+            
             <div class="bullet-card">
               <div class="bullet-icon-box">
                 <span class="bullet-icon">✦</span>
@@ -98,8 +70,7 @@
               <div class="bullet-content">
                 <h3 class="bullet-headline">Latest Creation by Spring Flow Games</h3>
                 <p class="bullet-description">
-                  The latest production from Spring Flow Games, crafted from the ground up as a peaceful, soul-soothing,
-                  and deeply calming gaming experience.
+                  The latest production from Spring Flow Games, crafted from the ground up as a peaceful, soul-soothing, and deeply calming gaming experience.
                 </p>
               </div>
             </div>
@@ -111,8 +82,7 @@
               <div class="bullet-content">
                 <h3 class="bullet-headline">Two-Tailed Fox Protagonist</h3>
                 <p class="bullet-description">
-                  Take control of a spirited little two-tailed fox navigating through a vast, unfamiliar, snow-covered
-                  world full of charm and wonder.
+                  Take control of a spirited little two-tailed fox navigating through a vast, unfamiliar, snow-covered world full of charm and wonder.
                 </p>
               </div>
             </div>
@@ -124,8 +94,7 @@
               <div class="bullet-content">
                 <h3 class="bullet-headline">Gentle Survival &amp; Gathering</h3>
                 <p class="bullet-description">
-                  Survival goes beyond withstanding the bitter cold—gather essential resources, craft warm fires, and
-                  find snug shelter across freezing nights.
+                  Survival goes beyond withstanding the bitter cold—gather essential resources, craft warm fires, and find snug shelter across freezing nights.
                 </p>
               </div>
             </div>
@@ -137,8 +106,7 @@
               <div class="bullet-content">
                 <h3 class="bullet-headline">The Mysterious Monumental Door</h3>
                 <p class="bullet-description">
-                  As the snowfall intensifies, one curious location remains untouched—a colossal, ancient door standing
-                  alone in the middle of nowhere.
+                  As the snowfall intensifies, one curious location remains untouched—a colossal, ancient door standing alone in the middle of nowhere.
                 </p>
               </div>
             </div>
@@ -150,8 +118,7 @@
               <div class="bullet-content">
                 <h3 class="bullet-headline">Warm Blanket &amp; Hot Cocoa Vibe</h3>
                 <p class="bullet-description">
-                  Engineered to evoke the heartwarming feeling of wrapping yourself in a soft blanket, sipping hot
-                  cocoa, and getting lost in a good book.
+                  Engineered to evoke the heartwarming feeling of wrapping yourself in a soft blanket, sipping hot cocoa, and getting lost in a good book.
                 </p>
               </div>
             </div>
@@ -163,8 +130,7 @@
               <div class="bullet-content">
                 <h3 class="bullet-headline">Enchanting, Pressure-Free World</h3>
                 <p class="bullet-description">
-                  Let the cozy atmosphere sweep you away as you immerse yourself in a magical, tranquil realm designed
-                  for relaxation and curious minds.
+                  Let the cozy atmosphere sweep you away as you immerse yourself in a magical, tranquil realm designed for relaxation and curious minds.
                 </p>
               </div>
             </div>
@@ -174,20 +140,19 @@
       </div>
     </section>
 
-    <!-- SECTION 4: 16:9 VIDEO PLACEHOLDER (UNIFIED CONTAINER & MATCHING HORIZONTAL POSITION) -->
-    <section id="section-4" class="screen-section section-video" aria-labelledby="video-heading">
+    <!-- SECTION 3: 16:9 VIDEO PLACEHOLDER (UNIFIED CONTAINER & MATCHING HORIZONTAL POSITION) -->
+    <section id="section-3" class="screen-section section-video" aria-labelledby="video-heading">
       <div class="section-container">
         <div class="section-inner">
-
+          
           <h2 id="video-heading" class="section-title">
             Watch the Gameplay Trailer
           </h2>
 
           <!-- 16:9 Aspect Ratio Video Box -->
           <div class="video-aspect-wrapper">
-            <div class="video-player-placeholder" id="videoPlaceholder" role="region"
-              aria-label="Video Player Placeholder">
-
+            <div class="video-player-placeholder" id="videoPlaceholder" role="region" aria-label="Video Player Placeholder">
+              
               <!-- Video Poster / Backdrop -->
               <div class="video-poster-backdrop" aria-hidden="true">
                 <div class="video-mesh-lights"></div>
@@ -239,5 +204,4 @@
   <!-- Main JavaScript File -->
   <script src="script.js"></script>
 </body>
-
 </html>

@@ -1,23 +1,22 @@
 /**
  * Mora Winter - Interactive Controller (Spring Flow Games)
  * Features:
- * 1. 3D Cartoonish Snowfall in the Dark (Bright, radiant white snowflakes against deep night)
- * 2. Authentic Criss-Cross Campfire with Hexagonal Glowing Cadmium Orange Crystal (Half off-screen at bottom)
- * 3. Active Section Navigation Syncing via IntersectionObserver (Right-side dot points)
- * 4. Interactive Video Player Placeholder
+ * 1. 3D Cartoonish Snowfall in the Dark (Falling in background behind title in Section 1)
+ * 2. Authentic Criss-Cross Campfire with Hexagonal Glowing Cadmium Orange Crystal (Section 1)
+ * 3. Active Section Navigation Syncing via IntersectionObserver (3-Section Setup)
+ * 4. Interactive Video Player Placeholder (Section 3)
  */
 
 document.addEventListener('DOMContentLoaded', () => {
   init3DSnowfall();
   initAuthenticCampfire3D();
-  initSectionNavigation();
   initVideoPlayer();
 });
 
 /**
  * =========================================================================
- * 1. 3D CARTOONISH SNOWFALL IN PURE DARKNESS (Section 1)
- * - Bright, radiant, crisp white snowflakes with high contrast against the dark sky
+ * 1. 3D CARTOONISH SNOWFALL (Section 1 - Behind Title)
+ * - Bright, radiant, crisp white snowflakes falling behind the title text
  * =========================================================================
  */
 function init3DSnowfall() {
@@ -56,8 +55,8 @@ function initThreeJSSnow(container) {
   frontFillLight.position.set(-30, -50, 60);
   scene.add(frontFillLight);
 
-  // Cartoonish 3D Snowflakes - Pure Radiant White
-  const flakeCount = 140;
+  // Cartoonish 3D Snowflakes - Pure Radiant White across 200dvh
+  const flakeCount = 190;
   const flakes = [];
 
   const geometries = [
@@ -90,16 +89,17 @@ function initThreeJSSnow(container) {
     const mat = Math.random() > 0.4 ? flakeMaterial : flakeGlowMaterial;
     const mesh = new THREE.Mesh(geom, mat);
 
-    mesh.position.x = (Math.random() - 0.5) * 220;
-    mesh.position.y = (Math.random() - 0.5) * 160;
+    mesh.position.x = (Math.random() - 0.5) * 230;
+    mesh.position.y = (Math.random() - 0.5) * 190;
     mesh.position.z = (Math.random() - 0.5) * 120;
 
-    const scale = 0.65 + Math.random() * 1.45;
-    mesh.scale.set(scale, scale, scale);
+    const baseScale = 0.75 + Math.random() * 1.5;
+    mesh.scale.set(baseScale, baseScale, baseScale);
 
     flakes.push({
       mesh: mesh,
-      speedY: 0.3 + Math.random() * 0.45,
+      baseScale: baseScale,
+      speedY: 0.32 + Math.random() * 0.18,
       wobbleSpeed: 0.8 + Math.random() * 1.5,
       wobbleRadius: 0.2 + Math.random() * 0.5,
       rotSpeedX: (Math.random() - 0.5) * 0.02,
@@ -112,14 +112,16 @@ function initThreeJSSnow(container) {
   }
 
   // Background particle dust - Bright White
-  const bgParticleCount = 200;
+  const bgParticleCount = 240;
   const bgGeometry = new THREE.BufferGeometry();
   const bgPositions = new Float32Array(bgParticleCount * 3);
+  const bgSpeeds = new Float32Array(bgParticleCount);
 
-  for (let i = 0; i < bgParticleCount * 3; i += 3) {
-    bgPositions[i] = (Math.random() - 0.5) * 300;
-    bgPositions[i + 1] = (Math.random() - 0.5) * 200;
-    bgPositions[i + 2] = -40 + (Math.random() - 0.5) * 80;
+  for (let i = 0; i < bgParticleCount; i++) {
+    bgPositions[i * 3] = (Math.random() - 0.5) * 300;
+    bgPositions[i * 3 + 1] = (Math.random() - 0.5) * 210;
+    bgPositions[i * 3 + 2] = -40 + (Math.random() - 0.5) * 80;
+    bgSpeeds[i] = 0.30 + Math.random() * 0.16;
   }
 
   bgGeometry.setAttribute('position', new THREE.BufferAttribute(bgPositions, 3));
@@ -152,6 +154,11 @@ function initThreeJSSnow(container) {
   }
 
   const clock = new THREE.Clock();
+  const topY = 95;
+  const bottomY = -95;
+  const totalSpan = topY - bottomY; // 190
+  const decayConstant = 2.6; // Exponential decay rate
+  const expDenom = 1 - Math.exp(-decayConstant);
 
   function animate() {
     requestAnimationFrame(animate);
@@ -163,6 +170,7 @@ function initThreeJSSnow(container) {
       const flake = flakes[i];
       const mesh = flake.mesh;
 
+      // Downward descent
       mesh.position.y -= flake.speedY;
       mesh.position.x = flake.baseX + Math.sin(elapsedTime * flake.wobbleSpeed + i) * flake.wobbleRadius;
 
@@ -170,17 +178,32 @@ function initThreeJSSnow(container) {
       mesh.rotation.y += flake.rotSpeedY;
       mesh.rotation.z += flake.rotSpeedZ;
 
-      if (mesh.position.y < -90) {
-        mesh.position.y = 90;
-        mesh.position.x = (Math.random() - 0.5) * 220;
+      // Calculate normalized vertical fall progress t in [0, 1]
+      const t = Math.min(1, Math.max(0, (topY - mesh.position.y) / totalSpan));
+
+      // Exponential decay scale formula (starts at 1.0 at top, drops exponentially to 0.0 at bottom)
+      const expFactor = Math.max(0, (Math.exp(-decayConstant * t) - Math.exp(-decayConstant)) / expDenom);
+      const currentScale = flake.baseScale * expFactor;
+      mesh.scale.set(currentScale, currentScale, currentScale);
+
+      // Disappear completely at the bottom and respawn at top with full size
+      if (mesh.position.y <= bottomY) {
+        mesh.position.y = topY;
+        mesh.position.x = (Math.random() - 0.5) * 230;
         flake.baseX = mesh.position.x;
+        mesh.scale.set(flake.baseScale, flake.baseScale, flake.baseScale);
       }
     }
 
+    // Animate background particles at similar descent rate
     const positions = bgGeometry.attributes.position.array;
-    for (let i = 1; i < bgParticleCount * 3; i += 3) {
-      positions[i] -= 0.15;
-      if (positions[i] < -100) positions[i] = 100;
+    for (let i = 0; i < bgParticleCount; i++) {
+      const yIdx = i * 3 + 1;
+      positions[yIdx] -= bgSpeeds[i];
+      if (positions[yIdx] < bottomY) {
+        positions[yIdx] = topY;
+        positions[i * 3] = (Math.random() - 0.5) * 300;
+      }
     }
     bgGeometry.attributes.position.needsUpdate = true;
 
@@ -203,13 +226,17 @@ function initCanvasSnowFallback(container) {
     height = canvas.height = container.clientHeight || window.innerHeight;
   });
 
-  const flakes = Array.from({ length: 90 }, () => ({
-    x: Math.random() * width,
-    y: Math.random() * height,
-    radius: Math.random() * 3.5 + 2,
-    speed: Math.random() * 1.2 + 0.6,
-    angle: Math.random() * Math.PI * 2
-  }));
+  const flakes = Array.from({ length: 90 }, () => {
+    const baseRadius = Math.random() * 3.5 + 2;
+    return {
+      x: Math.random() * width,
+      y: Math.random() * height,
+      baseRadius: baseRadius,
+      radius: baseRadius,
+      speed: Math.random() * 1.2 + 0.6,
+      angle: Math.random() * Math.PI * 2
+    };
+  });
 
   function draw() {
     ctx.clearRect(0, 0, width, height);
@@ -220,13 +247,20 @@ function initCanvasSnowFallback(container) {
       flake.x += Math.sin(flake.angle) * 0.4;
       flake.angle += 0.015;
 
-      if (flake.y > height) {
-        flake.y = -10;
+      // Exponential radius decay
+      const t = Math.min(1, Math.max(0, flake.y / height));
+      const expFactor = Math.max(0, (Math.exp(-2.6 * t) - Math.exp(-2.6)) / (1 - Math.exp(-2.6)));
+      flake.radius = flake.baseRadius * expFactor;
+
+      // Disappear at bottom and respawn at top
+      if (flake.y >= height) {
+        flake.y = 0;
         flake.x = Math.random() * width;
+        flake.radius = flake.baseRadius;
       }
 
       ctx.beginPath();
-      ctx.arc(flake.x, flake.y, flake.radius, 0, Math.PI * 2);
+      ctx.arc(flake.x, flake.y, Math.max(0.1, flake.radius), 0, Math.PI * 2);
       ctx.fill();
     });
 
@@ -237,7 +271,7 @@ function initCanvasSnowFallback(container) {
 
 /**
  * =========================================================================
- * 2. AUTHENTIC CRISS-CROSS CAMPFIRE WITH GLOWING CADMIUM ORANGE CRYSTAL (Section 2)
+ * 2. AUTHENTIC CRISS-CROSS CAMPFIRE WITH GLOWING CADMIUM ORANGE CRYSTAL (Section 1)
  * - Lowered position: about half of the campfire is off-screen at the bottom
  * - Deep, earthy Cadmium Orange glowing crystal (reduced saturation, rich warmth)
  * - Natural leaning & criss-crossed charred wood logs, stone ring hearth
@@ -492,14 +526,14 @@ function initAuthenticCampfire3D() {
   };
   window.addEventListener('resize', handleCampfireResize, { passive: true });
 
-  // IntersectionObserver to pause rendering when section 2 is off-screen
-  let isSection2Visible = true;
-  const sec2 = document.getElementById('section-2');
-  if (sec2) {
+  // IntersectionObserver to pause rendering when Section 1 is off-screen
+  let isSection1CampfireVisible = true;
+  const sec1 = document.getElementById('section-1');
+  if (sec1) {
     const observer = new IntersectionObserver((entries) => {
-      entries.forEach(entry => { isSection2Visible = entry.isIntersecting; });
+      entries.forEach(entry => { isSection1CampfireVisible = entry.isIntersecting; });
     }, { threshold: 0.05 });
-    observer.observe(sec2);
+    observer.observe(sec1);
   }
 
   // Animation Loop with Light Flicker & Cadmium Orange Title Illumination
@@ -507,7 +541,7 @@ function initAuthenticCampfire3D() {
 
   function animateAuthenticCampfire() {
     requestAnimationFrame(animateAuthenticCampfire);
-    if (!isSection2Visible) return;
+    if (!isSection1CampfireVisible) return;
 
     const time = clock.getElapsedTime();
 
@@ -563,61 +597,7 @@ function initAuthenticCampfire3D() {
 
 /**
  * =========================================================================
- * 3. SECTION NAVIGATION & ACTIVE STATE SYNCING
- * =========================================================================
- */
-function initSectionNavigation() {
-  const sections = document.querySelectorAll('.screen-section');
-  const sideDots = document.querySelectorAll('.side-nav-dot');
-
-  const observerOptions = {
-    root: null,
-    rootMargin: '-20% 0px -30% 0px',
-    threshold: [0.1, 0.4, 0.7]
-  };
-
-  const observer = new IntersectionObserver((entries) => {
-    entries.forEach(entry => {
-      if (entry.isIntersecting) {
-        const currentId = entry.target.getAttribute('id');
-        
-        sideDots.forEach(dot => {
-          if (dot.getAttribute('data-section') === currentId) {
-            dot.classList.add('active');
-            dot.setAttribute('aria-current', 'true');
-          } else {
-            dot.classList.remove('active');
-            dot.removeAttribute('aria-current');
-          }
-        });
-      }
-    });
-  }, observerOptions);
-
-  sections.forEach(sec => observer.observe(sec));
-
-  // Smooth click scroll for side dots
-  document.querySelectorAll('a[href^="#"]').forEach(anchor => {
-    anchor.addEventListener('click', function (e) {
-      const targetId = this.getAttribute('href');
-      if (targetId && targetId !== '#') {
-        const targetEl = document.querySelector(targetId);
-        if (targetEl) {
-          e.preventDefault();
-          targetEl.scrollIntoView({
-            behavior: 'smooth',
-            block: 'start'
-          });
-          history.pushState(null, '', targetId);
-        }
-      }
-    });
-  });
-}
-
-/**
- * =========================================================================
- * 4. INTERACTIVE VIDEO PLAYER PLACEHOLDER (Section 4)
+ * 3. INTERACTIVE VIDEO PLAYER PLACEHOLDER (Section 3)
  * =========================================================================
  */
 function initVideoPlayer() {
