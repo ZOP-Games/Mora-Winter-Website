@@ -1,22 +1,27 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <meta name="description" content="Mora Winter - A cozy winter exploration and atmospheric survival game by Spring Flow Games.">
+  <meta name="description"
+    content="Mora Winter - A cozy winter exploration and atmospheric survival game by Spring Flow Games.">
   <title>Mora Winter | Spring Flow Games</title>
-  
+
   <!-- Google Fonts: Fraunces & Lora for a cozy, storybook winter feel -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Lora:ital,wght@0,400..700;1,400..700&family=Inter:wght@400;500;600&display=swap" rel="stylesheet">
-  
+  <link
+    href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,300..900;1,9..144,300..900&family=Lora:ital,wght@0,400..700;1,400..700&family=Inter:wght@400;500;600&display=swap"
+    rel="stylesheet">
+
   <!-- Three.js for 3D Cartoonish Snow & Massive Campfire Rendering -->
   <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/r128/three.min.js"></script>
-  
+
   <!-- Main Stylesheet -->
   <link rel="stylesheet" href="style.css">
 </head>
+
 <body>
 
   <!-- Main Content Container -->
@@ -24,7 +29,7 @@
 
     <!-- SECTION 1: MERGED HERO (160dvh, 60dvh UPPER SKY SNOWFALL, TITLE CENTERED IN BOTTOM 100dvh) -->
     <section id="section-1" class="screen-section section-hero-merged" aria-label="Mora Winter Hero">
-      
+
       <!-- 3D Snowfall Canvas across 160dvh background -->
       <div id="snow-container" class="snow-webgl-wrapper" aria-hidden="true"></div>
 
@@ -37,7 +42,7 @@
       <!-- Bottom Half (100dvh): Vertically Centered Title & Campfire Hearth -->
       <div class="hero-bottom-half">
         <div class="section-container title-container">
-          
+
           <!-- Ambient Warm Hearth Glow -->
           <div class="hearth-glow-backdrop" aria-hidden="true"></div>
 
@@ -62,7 +67,7 @@
           </h2>
 
           <div class="bullets-grid">
-            
+
             <div class="bullet-card">
               <div class="bullet-icon-box">
                 <span class="bullet-icon">✦</span>
@@ -70,7 +75,8 @@
               <div class="bullet-content">
                 <h3 class="bullet-headline">Latest Creation by Spring Flow Games</h3>
                 <p class="bullet-description">
-                  The latest production from Spring Flow Games, crafted from the ground up as a peaceful, soul-soothing, and deeply calming gaming experience.
+                  The latest production from Spring Flow Games, crafted from the ground up as a peaceful, soul-soothing,
+                  and deeply calming gaming experience.
                 </p>
               </div>
             </div>
@@ -82,7 +88,8 @@
               <div class="bullet-content">
                 <h3 class="bullet-headline">Two-Tailed Fox Protagonist</h3>
                 <p class="bullet-description">
-                  Take control of a spirited little two-tailed fox navigating through a vast, unfamiliar, snow-covered world full of charm and wonder.
+                  Take control of a spirited little two-tailed fox navigating through a vast, unfamiliar, snow-covered
+                  world full of charm and wonder.
                 </p>
               </div>
             </div>
@@ -94,7 +101,8 @@
               <div class="bullet-content">
                 <h3 class="bullet-headline">Gentle Survival &amp; Gathering</h3>
                 <p class="bullet-description">
-                  Survival goes beyond withstanding the bitter cold—gather essential resources, craft warm fires, and find snug shelter across freezing nights.
+                  Survival goes beyond withstanding the bitter cold—gather essential resources, craft warm fires, and
+                  find snug shelter across freezing nights.
                 </p>
               </div>
             </div>
@@ -106,7 +114,8 @@
               <div class="bullet-content">
                 <h3 class="bullet-headline">The Mysterious Monumental Door</h3>
                 <p class="bullet-description">
-                  As the snowfall intensifies, one curious location remains untouched—a colossal, ancient door standing alone in the middle of nowhere.
+                  As the snowfall intensifies, one curious location remains untouched—a colossal, ancient door standing
+                  alone in the middle of nowhere.
                 </p>
               </div>
             </div>
@@ -118,7 +127,8 @@
               <div class="bullet-content">
                 <h3 class="bullet-headline">Warm Blanket &amp; Hot Cocoa Vibe</h3>
                 <p class="bullet-description">
-                  Engineered to evoke the heartwarming feeling of wrapping yourself in a soft blanket, sipping hot cocoa, and getting lost in a good book.
+                  Engineered to evoke the heartwarming feeling of wrapping yourself in a soft blanket, sipping hot
+                  cocoa, and getting lost in a good book.
                 </p>
               </div>
             </div>
@@ -130,7 +140,8 @@
               <div class="bullet-content">
                 <h3 class="bullet-headline">Enchanting, Pressure-Free World</h3>
                 <p class="bullet-description">
-                  Let the cozy atmosphere sweep you away as you immerse yourself in a magical, tranquil realm designed for relaxation and curious minds.
+                  Let the cozy atmosphere sweep you away as you immerse yourself in a magical, tranquil realm designed
+                  for relaxation and curious minds.
                 </p>
               </div>
             </div>
@@ -144,50 +155,18 @@
     <section id="section-3" class="screen-section section-video" aria-labelledby="video-heading">
       <div class="section-container">
         <div class="section-inner">
-          
+
           <h2 id="video-heading" class="section-title">
             Watch the Gameplay Trailer
           </h2>
 
           <!-- 16:9 Aspect Ratio Video Box -->
           <div class="video-aspect-wrapper">
-            <div class="video-player-placeholder" id="videoPlaceholder" role="region" aria-label="Video Player Placeholder">
-              
-              <!-- Video Poster / Backdrop -->
-              <div class="video-poster-backdrop" aria-hidden="true">
-                <div class="video-mesh-lights"></div>
-                <div class="poster-frost-overlay"></div>
-              </div>
-
-              <!-- Play Button & Overlay -->
-              <div class="video-overlay-ui">
-                <button class="video-play-btn" id="playBtn" aria-label="Play Mora Winter Trailer">
-                  <span class="play-icon-triangle" aria-hidden="true">▶</span>
-                </button>
-                <div class="video-meta-tags">
-                  <span class="video-tag-pill">4K UHD</span>
-                  <span class="video-tag-pill">16:9 Aspect Ratio</span>
-                  <span class="video-tag-pill">Cozy Teaser</span>
-                </div>
-                <div class="video-title-prompt">Mora Winter — Official Announcement Trailer</div>
-              </div>
-
-              <!-- Video Progress Bar Mockup -->
-              <div class="video-controls-bar" aria-hidden="true">
-                <div class="controls-left">
-                  <span class="ctrl-icon">❚❚</span>
-                  <span class="ctrl-time">0:00 / 2:14</span>
-                </div>
-                <div class="video-scrubber-track">
-                  <div class="video-scrubber-fill"></div>
-                </div>
-                <div class="controls-right">
-                  <span class="ctrl-icon">🔊</span>
-                  <span class="ctrl-icon">⛶</span>
-                </div>
-              </div>
-
-            </div>
+            <iframe src="https://www.youtube.com/embed/5vromJ9T3uc?si=gvh5JFK-h3-3j1z-" title="YouTube video player"
+              frameborder="0"
+              allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+              referrerpolicy="strict-origin-when-cross-origin" allowfullscreen>
+            </iframe>
           </div>
 
           <footer class="site-closing-footer">
@@ -204,4 +183,5 @@
   <!-- Main JavaScript File -->
   <script src="script.js"></script>
 </body>
+
 </html>
